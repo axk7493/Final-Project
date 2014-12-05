@@ -1,9 +1,9 @@
-package edu.louisiana.cacs.csce450Project;
+package edu.louisiana.cacs.csce450GProject;
 
 import java.util.Stack;
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.PrintStream;
+
 
 public class Parser 
 {
@@ -98,10 +98,11 @@ public class Parser
 		{
 			BufferedReader br = new BufferedReader(new FileReader(file));
 	      
-			String input;
+			
 			input= br.readLine();
-			while((input)!=null  )
-			{
+			
+			//while((input)!= null )
+			//{
 				//String input=br.readLine();
 				//String id="id";
 				if (!(input.contains("id")))
@@ -109,13 +110,12 @@ public class Parser
 					System.out.println("Ungrammatical Grammer");
 					System.exit(0);
 				}
+				
 				input=input.replaceAll(" ", "");
-				input=input.replaceAll("id","x");
 				
 				
-				
-			}
-			
+			//}
+			input=input.replaceAll("id","x");
 			br.close();
 		}
 		catch(Exception e)
@@ -356,6 +356,7 @@ public class Parser
 							 if((OutputActionVal.charAt(1))=='3')
 							 {
 //								 Oper="*";
+//								 
 //								 parseTreeEle=TreeEle.concat(sNext).concat(Oper).concat(st1)+"]";
 //								 parseTree.push(parseTreeEle);
 							 }
@@ -495,33 +496,39 @@ public class Parser
 	
     public void setRuleValues(String ruleNum)
     {
-    	switch(ruleNum)
+    	if (Integer.parseInt(ruleNum)==1)
     	{
-    		case "1":
-    			LHS='E';
-    			RHS=3;
-    			break;
-    		case "2":
-    			LHS='E';
-    			RHS=1;
-    			break;
-    		case "3":
-    			LHS='T';
-    			RHS=3;
-    			break;
-    		case "4":
-    			LHS='T';
-    			RHS=1;
-    			break;
-    		case "5":
-    			LHS='F';
-    			RHS=3;
-    			break;
-    		case "6":
-    			LHS='F';
-    			RHS=1;
-    			break;
-    	} //end of switch 
+    		LHS='E';
+			RHS=3;
+    	}
+    	else if(Integer.parseInt(ruleNum)==2)
+    	{
+    		LHS='E';
+			RHS=1;
+    	}
+    	else if(Integer.parseInt(ruleNum)==3)
+    	{
+    		LHS='T';
+			RHS=3;
+    	}
+    	
+    	else if(Integer.parseInt(ruleNum)==4)
+    	{
+    		LHS='T';
+			RHS=1;
+    	}
+    	
+    	else if(Integer.parseInt(ruleNum)==5)
+    	{
+    		LHS='F';
+			RHS=3;
+    	}
+    	else
+    	{
+    		LHS='F';
+			RHS=1;
+    	}
+    	
     } //end of setRuleValues
     
     
@@ -572,6 +579,10 @@ public class Parser
 				 {				 
 					 
 					 count=1;
+				 }
+				 if(parseTreeEle.charAt(i)==')')
+				 {
+					 count=0;
 				 }
 				 count++;
 			 
